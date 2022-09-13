@@ -6,41 +6,46 @@ const app = express();
 const server = require("http").createServer(app);
 const MemoryStore = require("memorystore")(session);
 
-app.use(session({
-    store: new MemoryStore({ checkPeriod: 86400000 }),
-    secret: "#@%#&^$^$%@$^$&%#$%@#$%$^%&$%^#$%@#$%#E%#%@$FEErfgr3g#%GT%536c53cc6%5%tv%4y4hrgrggrgrgf4n",
-    resave: false,
-    saveUninitialized: false,
-}));
+app.use(
+	session({
+		store: new MemoryStore({ checkPeriod: 86400000 }),
+		secret:
+			"#@%#&^$^$%@$^$&%#$%@#$%$^%&$%^#$%@#$%#E%#%@$FEErfgr3g#%GT%536c53cc6%5%tv%4y4hrgrggrgrgf4n",
+		resave: false,
+		saveUninitialized: false,
+	})
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true,
-}));
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const routers = {
-    main: require("./routes/main")
+	main: require("./routes/main"),
 };
 
 app.use("/", routers.main);
 
 // 404 error page
-app.get('*', (req, res) => {
-    res.status(404).render("partials/404", {
-    title: 'Error 404'
-    });
+app.get("*", (req, res) => {
+	res.status(404).render("partials/404", {
+		title: "Error 404",
+	});
 });
 
 const port = process.env.PORT || 8080;
 
 process.on("uncaughtException", (err) => {
-    console.log(err);
-}); 
+	console.log(err);
+});
 
 server.listen(port, () => console.log(`Server listen on port ${port}`));

@@ -1,23 +1,23 @@
 * {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .global-navbar-container {
-    width: 100%;
+	width: 100%;
 }
 
 .global-navbar {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
+	display: flex;
+	flex-direction: row;
+	list-style: none;
 }
 
 .navbar-item {
-    padding: 5px 10px
+	padding: 5px 10px;
 }
 
 /* Footer */
 .footer {
-    margin: 20px 10px;
+	margin: 20px 10px;
 }
